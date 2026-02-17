@@ -21,7 +21,7 @@ jobs:
         envs: VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY
         script: |
           # 1. الذهاب لمجلد المشروع
-          cd /var/jadwala/
+          cd /var/jadwala/jadwala-w
 
           # 2. سحب أحدث التغييرات
           git pull origin main
