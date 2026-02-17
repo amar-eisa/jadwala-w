@@ -11,7 +11,7 @@
 - **Icons:** Lucide React
 
 ## ⚙️ Installation
-1. `git clone https://github.com/amar-eisa/jadwala-m.git`
+1. `git clone https://github.com/amar-eisa/jadwala-w.git`
 2. `npm install`
 3. `npm run dev`
 
