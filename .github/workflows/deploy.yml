@@ -1,9 +1,9 @@
-name: Deploy to VPS
+name: Deploy Jadwala to VPS
 
 on:
   push:
     branches:
-      - main  # أو اسم الفرع الذي تريد الرفع منه
+      - main
 
 jobs:
   deploy:
@@ -20,27 +20,26 @@ jobs:
         # تمرير المتغيرات السرية لاستخدامها داخل السكريبت
         envs: VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY
         script: |
-          # 1. الذهاب لمجلد المشروع
+          # 1. الذهاب لمسار المشروع الجديد
           cd /var/jadwala/jadwala-w
 
-          # 2. سحب أحدث التغييرات
+          # 2. سحب أحدث التغييرات من GitHub
           git pull origin main
 
-          # 3. بناء الصورة (Image) داخل السيرفر
-          # نمرر المتغيرات هنا لكي يتم تضمينها في Vite Build
+          # 3. بناء الصورة (Image) داخل السيرفر مع تمرير المتغيرات
           docker build \
             --build-arg VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }} \
             --build-arg VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }} \
-            -t schedule-smart-app .
+            -t jadwala-image .
 
-          # 4. إيقاف وحذف الحاوية القديمة (إن وجدت)
+          # 4. إيقاف وحذف الحاوية القديمة (jadwala-container)
           docker stop jadwala-container || true
           docker rm jadwala-container || true
 
           # 5. تشغيل الحاوية الجديدة
-          # ربط المنفذ 8001 (سيرفر) بالمنفذ 80 (داخلي)
+          # المنفذ الخارجي 8001 يوجه للمنفذ الداخلي 80
           docker run -d \
             --name jadwala-container \
             --restart unless-stopped \
             -p 8001:80 \
-            schedule-smart-app
+            jadwala-image
