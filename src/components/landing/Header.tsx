@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
-
+import logo from "@/assets/logo-new.png";
 interface HeaderProps {
   onRegisterClick: () => void;
 }
