@@ -27,7 +27,7 @@ jobs:
           git pull origin main
 
           # 3. بناء الصورة (Image) داخل السيرفر مع تمرير المتغيرات
-          docker build \
+          docker build --no-cache \
             --build-arg VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }} \
             --build-arg VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }} \
             -t jadwala-image .
