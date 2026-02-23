@@ -157,7 +157,7 @@ const HeroSection = ({ onRegisterClick }: HeroSectionProps) => {
         </DialogHeader>
         <div className="grid grid-cols-2 gap-4 mt-4">
           <a
-            href="https://jadwalauni.lovable.app/"
+            href="https://jadwalauni.lovable.app/auth"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-primary/20 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer"
