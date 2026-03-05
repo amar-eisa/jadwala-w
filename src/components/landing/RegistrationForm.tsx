@@ -89,64 +89,91 @@ const RegistrationForm = ({ formRef }: RegistrationFormProps) => {
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    try {
-      const fullPhone = `${data.countryCode} ${data.phone}`;
-      const { error } = await supabase.from("leads").insert({
-        full_name: data.fullName,
-        email: data.email,
-        phone: fullPhone,
-        institution: data.institution,
-        job_title: data.jobTitle,
-        student_count: data.studentCount,
-        notes: data.notes || null,
-      });
+ const onSubmit = async (data: FormData) => {
+  setIsSubmitting(true);
+  try {
+    const fullPhone = `${data.countryCode} ${data.phone}`;
+    
+    // 1. إرسال البيانات إلى Supabase (الكود الحالي)
+    const { error } = await supabase.from("leads").insert({
+      full_name: data.fullName,
+      email: data.email,
+      phone: fullPhone,
+      institution: data.institution,
+      job_title: data.jobTitle,
+      student_count: data.studentCount,
+      notes: data.notes || null,
+    });
 
-      if (error) {
-        console.error("Error submitting lead:", error);
-        toast({
-          variant: "destructive",
-          title: "خطأ في التسجيل",
-          description: "حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.",
-        });
-      } else {
-        // Send WhatsApp notification
-        try {
-          await supabase.functions.invoke('send-whatsapp-notification', {
-            body: {
-              fullName: data.fullName,
-              email: data.email,
-              phone: fullPhone,
-              institution: data.institution,
-              jobTitle: data.jobTitle,
-              studentCount: data.studentCount,
-              notes: data.notes,
-            },
-          });
-          console.log("WhatsApp notification sent successfully");
-        } catch (notificationError) {
-          console.error("Failed to send WhatsApp notification:", notificationError);
-          // Don't show error to user, form submission was successful
-        }
-
-        toast({
-          title: "تم التسجيل بنجاح! 🎉",
-          description: "سنتواصل معك قريباً",
-        });
-        form.reset();
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    if (error) {
+      console.error("Error submitting lead:", error);
       toast({
         variant: "destructive",
-        title: "خطأ",
-        description: "حدث خطأ غير متوقع",
+        title: "خطأ في التسجيل",
+        description: "حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.",
       });
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      // 2. إرسال إشعار الواتساب (الكود الحالي)
+      try {
+        await supabase.functions.invoke('send-whatsapp-notification', {
+          body: {
+            fullName: data.fullName,
+            email: data.email,
+            phone: fullPhone,
+            institution: data.institution,
+            jobTitle: data.jobTitle,
+            studentCount: data.studentCount,
+            notes: data.notes,
+          },
+        });
+        console.log("WhatsApp notification sent successfully");
+      } catch (notificationError) {
+        console.error("Failed to send WhatsApp notification:", notificationError);
+      }
+
+      // ==========================================
+      // 3. الجزء الجديد: إرسال البيانات إلى n8n
+      // ==========================================
+      try {
+        // استبدل الرابط أدناه برابط Webhook الخاص بك من n8n
+        await fetch('https://8n8.connectsys.cloud/webhook/389ad680-0529-4b59-b5fe-ae864e1bcd24', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fullName: data.fullName,
+            email: data.email,
+            phone: fullPhone,
+            institution: data.institution,
+            jobTitle: data.jobTitle,
+            studentCount: data.studentCount,
+            notes: data.notes || "لا يوجد",
+          }),
+        });
+        console.log("n8n webhook triggered successfully");
+      } catch (n8nError) {
+        console.error("Failed to trigger n8n webhook:", n8nError);
+      }
+      // ==========================================
+
+      toast({
+        title: "تم التسجيل بنجاح! 🎉",
+        description: "سنتواصل معك قريباً",
+      });
+      form.reset();
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    toast({
+      variant: "destructive",
+      title: "خطأ",
+      description: "حدث خطأ غير متوقع",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="register" className="py-24 relative" ref={formRef}>
