@@ -30,6 +30,10 @@ const Footer = () => {
             <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
               التواصل
             </a>
+            <a href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">
+              سياسة الخصوصية
+            </a>
+
           </div>
 
           {/* Copyright */}

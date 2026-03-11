@@ -16,7 +16,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen font-cairo" dir="rtl">
+    <div className="min-h-screen font-tajawal" dir="rtl">
       <Header onRegisterClick={scrollToForm} />
       <HeroSection onRegisterClick={scrollToForm} />
       <FeaturesSection />
