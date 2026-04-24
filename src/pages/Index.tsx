@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Header from "@/components/landing/Header";
 import HeroSection from "@/components/landing/HeroSection";
+import ClientsSection from "@/components/landing/ClientsSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import RegistrationForm from "@/components/landing/RegistrationForm";
@@ -19,6 +20,7 @@ const Index = () => {
     <div className="min-h-screen font-tajawal" dir="rtl">
       <Header onRegisterClick={scrollToForm} />
       <HeroSection onRegisterClick={scrollToForm} />
+      <ClientsSection />
       <FeaturesSection />
       <HowItWorksSection />
       <RegistrationForm formRef={formRef} />

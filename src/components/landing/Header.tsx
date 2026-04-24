@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo-new.png";
+import logo from "@/assets/logo.png";
+
 interface HeaderProps {
   onRegisterClick: () => void;
 }
@@ -29,6 +30,7 @@ const Header = ({ onRegisterClick }: HeaderProps) => {
   }, [isDark]);
 
   const navLinks = [
+    { href: "#clients", label: "عملاؤنا" },
     { href: "#features", label: "المميزات" },
     { href: "#how-it-works", label: "كيف يعمل" },
     { href: "#contact", label: "التواصل" },
