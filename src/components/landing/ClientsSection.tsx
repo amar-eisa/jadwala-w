@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import geziraLogo from "@/assets/clients/nile-university.png";
+import geziraLogo from "@/assets/clients/gezira-university.png";
 import omdurmanLogo from "@/assets/clients/omdurman-islamic-university.png";
 import nileLogo from "@/assets/clients/nile-university.png";
 
