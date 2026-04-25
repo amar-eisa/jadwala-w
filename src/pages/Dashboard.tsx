@@ -23,6 +23,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
   LogOut,
   Search,
   Download,
@@ -30,8 +41,9 @@ import {
   UserPlus,
   TrendingUp,
   RefreshCw,
+  Trash2,
 } from "lucide-react";
-import logo from "@/assets/logo-new.png";
+import logo from "@/assets/logo.png";
 
 interface Lead {
   id: string;
@@ -155,6 +167,37 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error("Error updating status:", error);
+    }
+  };
+
+  const deleteLead = async (leadId: string, leadName: string) => {
+    try {
+      const { error } = await supabase
+        .from("leads")
+        .delete()
+        .eq("id", leadId);
+
+      if (error) {
+        console.error("Error deleting lead:", error);
+        toast({
+          variant: "destructive",
+          title: "خطأ في الحذف",
+          description: "فشل في حذف الطلب. يرجى المحاولة مرة أخرى.",
+        });
+      } else {
+        toast({
+          title: "تم الحذف بنجاح",
+          description: `تم حذف طلب ${leadName}`,
+        });
+        fetchLeads();
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast({
+        variant: "destructive",
+        title: "خطأ",
+        description: "حدث خطأ غير متوقع",
+      });
     }
   };
 
@@ -391,6 +434,7 @@ const Dashboard = () => {
                       <TableHead>عدد الطلاب</TableHead>
                       <TableHead>الحالة</TableHead>
                       <TableHead>التاريخ</TableHead>
+                      <TableHead className="text-center">إجراءات</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -420,6 +464,39 @@ const Dashboard = () => {
                         </TableCell>
                         <TableCell>
                           {new Date(lead.created_at).toLocaleDateString("ar-SA")}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                                aria-label="حذف الطلب"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent dir="rtl">
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>تأكيد الحذف</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  هل أنت متأكد من حذف طلب <span className="font-bold text-foreground">{lead.full_name}</span>؟
+                                  <br />
+                                  لا يمكن التراجع عن هذا الإجراء وسيتم حذف البيانات نهائياً.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter className="gap-2">
+                                <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => deleteLead(lead.id, lead.full_name)}
+                                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                >
+                                  حذف
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </TableCell>
                       </TableRow>
                     ))}
