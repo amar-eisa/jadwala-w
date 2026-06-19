@@ -3,27 +3,131 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>نظام جدولة | ذكاء وسهولة في تنظيم محاضراتك</title>
-    <meta name="description" content="الحل الأمثل للجامعات والمؤسسات التعليمية لإنشاء جداول دراسية خالية من التعارضات" />
-    <meta name="author" content="نظام جدولة" />
-    
-    <!-- Google Fonts - Cairo for Arabic -->
+
+    <!-- ===== SEO: Title ===== -->
+    <!-- الكلمة المفتاحية الرئيسية في أول العنوان -->
+    <title>جدولة المحاضرات | نظام ذكي لإنشاء الجداول الدراسية تلقائياً - Jadwala</title>
+
+    <!-- ===== SEO: Meta Description ===== -->
+    <!-- 150-160 حرف تظهر في نتائج Google -->
+    <meta name="description" content="جدولة (Jadwala) — نظام ذكي لجدولة المحاضرات الجامعية تلقائياً. أنشئ جداول دراسية خالية من التعارضات في دقائق. الحل الأمثل للجامعات والمعاهد والمدارس." />
+
+    <!-- ===== SEO: Keywords ===== -->
+    <meta name="keywords" content="جدولة المحاضرات, جدول دراسي, جدول المحاضرات, نظام الجدولة, جدولة تلقائية, جداول دراسية, حل جدولة, تعارض الجداول, جدولة جامعية, lecture scheduling, timetable generator, university schedule, automated timetable, جدولة, jadwala" />
+
+    <meta name="author" content="جدولة - Jadwala" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- ===== SEO: Canonical URL (غيّر الرابط لرابط موقعك الفعلي) ===== -->
+    <link rel="canonical" href="https://jadwala-w.vercel.app/" />
+
+    <!-- ===== SEO: Language & Geo ===== -->
+    <meta name="language" content="Arabic" />
+    <meta name="geo.region" content="SA" />
+    <meta http-equiv="content-language" content="ar" />
+
+    <!-- ===== Open Graph (Facebook, WhatsApp, LinkedIn) ===== -->
+    <meta property="og:title" content="جدولة المحاضرات | نظام ذكي لإنشاء الجداول الدراسية - Jadwala" />
+    <meta property="og:description" content="نظام جدولة ذكي يساعد الجامعات والمؤسسات التعليمية على إنشاء جداول المحاضرات تلقائياً بدون تعارضات." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jadwala-w.vercel.app/" />
+    <meta property="og:image" content="https://jadwala-w.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="جدولة - نظام جدولة المحاضرات الذكي" />
+    <meta property="og:site_name" content="جدولة | Jadwala" />
+    <meta property="og:locale" content="ar_SA" />
+
+    <!-- ===== Twitter Card ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jadwala" />
+    <meta name="twitter:title" content="جدولة المحاضرات | نظام ذكي لإنشاء الجداول الدراسية" />
+    <meta name="twitter:description" content="نظام جدولة ذكي يساعد الجامعات على إنشاء جداول المحاضرات تلقائياً بدون تعارضات." />
+    <meta name="twitter:image" content="https://jadwala-w.vercel.app/og-image.png" />
+
+    <!-- ===== Schema.org: SoftwareApplication (يساعد Google يفهم طبيعة الموقع) ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "جدولة - Jadwala",
+      "alternateName": "نظام جدولة المحاضرات",
+      "description": "نظام ذكي لجدولة المحاضرات الجامعية تلقائياً، يحل مشكلة التعارضات في الجداول الدراسية بكفاءة عالية.",
+      "applicationCategory": "EducationApplication",
+      "applicationSubCategory": "Scheduling Software",
+      "operatingSystem": "Web Browser",
+      "inLanguage": "ar",
+      "url": "https://jadwala-w.vercel.app/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "SAR",
+        "availability": "https://schema.org/InStock"
+      },
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "administrator"
+      },
+      "featureList": [
+        "جدولة المحاضرات تلقائياً",
+        "إدارة قاعات الدراسة",
+        "إدارة أعضاء هيئة التدريس",
+        "حل تعارضات الجداول",
+        "تصدير الجدول الدراسي"
+      ]
+    }
+    </script>
+
+    <!-- ===== Schema.org: WebSite (يفعّل Search Sitelinks في Google) ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "جدولة | Jadwala",
+      "url": "https://jadwala-w.vercel.app/",
+      "description": "نظام ذكي لجدولة المحاضرات الجامعية",
+      "inLanguage": "ar",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://jadwala-w.vercel.app/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- ===== Fonts ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- ===== Favicon ===== -->
     <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
 
-    <meta property="og:title" content="نظام جدولة | ذكاء وسهولة في تنظيم محاضراتك" />
-    <meta property="og:description" content="الحل الأمثل للجامعات والمؤسسات التعليمية لإنشاء جداول دراسية خالية من التعارضات" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jadwala" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <!-- ===== Performance: Preload main script ===== -->
+    <link rel="modulepreload" href="/src/main.tsx">
   </head>
 
   <body>
+    <!-- 
+      ملاحظة SEO مهمة:
+      لأن الموقع React SPA، Google قد لا يقرأ المحتوى المُولَّد بـ JavaScript بشكل كامل.
+      الحل المثالي: أضف محتوى نصي ثابت هنا قبل #root يصف الموقع،
+      أو استخدم SSR/SSG (مثل Next.js أو Vite SSR).
+    -->
+    <noscript>
+      <h1>جدولة المحاضرات - Jadwala</h1>
+      <p>
+        جدولة هو نظام ذكي لجدولة المحاضرات الجامعية تلقائياً.
+        يساعد الجامعات والمؤسسات التعليمية على إنشاء جداول دراسية
+        خالية من التعارضات بكل سهولة وكفاءة.
+      </p>
+      <p>يرجى تفعيل JavaScript لاستخدام النظام.</p>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
