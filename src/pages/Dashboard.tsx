@@ -43,7 +43,7 @@ import {
   RefreshCw,
   Trash2,
 } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 interface Lead {
   id: string;
